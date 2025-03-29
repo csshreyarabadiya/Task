@@ -1,0 +1,71 @@
+<div class="form-container">
+    <h2>Add New Contact</h2>
+     <div class="avatar-container" (click)="triggerFileInput()">
+        <img [src]="selectedImage || 'assets/images/user1.jpg'" alt="User Avatar" class="avatar">
+    </div>
+    <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden>
+ <form [formGroup]="userDetailForm">
+    <div class="form-fields">
+        <div class="form-row">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+              
+            </mat-form-field>
+ 
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName">
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Company Name</mat-label>
+                <input matInput formControlName="companyName">
+            </mat-form-field>
+ 
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="tel" formControlName="phoneNumber">
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+ 
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address">
+            </mat-form-field>
+        </div>
+
+        <div class="form-row full-width">
+            <mat-form-field appearance="outline">
+                <mat-label>Notes</mat-label>
+                <textarea matInput formControlName="notes"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="form-row full-width">
+            <mat-form-field appearance="outline">
+                <mat-label>Department Name</mat-label>
+                <mat-select formControlName="departmentName">
+                    <mat-option value="engineering">Engineering</mat-option>
+                    <mat-option value="sales">Sales</mat-option>
+                    <mat-option value="sales">Support</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+<div class="button-container">
+    <button mat-button class="cancel-button" (click)="onCancel()">Cancel</button>
+    <button mat-button class="add-button" (click)="onAddUser()" [disabled]="userDetailForm.invalid">Add Contact</button>
+</div>
+</form>
+</div>

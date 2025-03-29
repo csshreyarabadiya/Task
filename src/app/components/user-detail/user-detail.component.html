@@ -1,0 +1,46 @@
+<mat-card class="user-detail-card">
+  <div class="user-header">
+    <img [src]="selectedUser?.photo" class="user-avatar">
+    <div class="user-info">
+      <h2>{{ selectedUser?.firstName }} {{ selectedUser?.lastName }}</h2>
+      <p>{{ selectedUser?.company }}</p>
+    </div>
+    <div class="user-actions">
+      <mat-icon color="accent">star</mat-icon>
+      <mat-icon color="primary">edit</mat-icon>
+      <mat-icon color="warn">delete</mat-icon>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <!-- <mat-list>
+    <mat-list-item>
+      <mat-icon>phone</mat-icon>
+      <p>{{ selectedUser?.phone }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>email</mat-icon>
+      <p>{{ selectedUser?.email }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>home</mat-icon>
+      <p>{{ selectedUser?.address }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>work</mat-icon>
+      <p>{{ selectedUser?.department }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>business</mat-icon>
+      <p>{{ selectedUser?.company }}</p>
+    </mat-list-item>
+  </mat-list>
+
+  <mat-divider></mat-divider>
+
+  <div class="user-notes">
+    <h3>Notes</h3>
+    <p>{{ selectedUser?.notes }}</p>
+  </div> -->
+</mat-card>

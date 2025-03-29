@@ -1,0 +1,34 @@
+<div class="sidebar-container">
+    <button mat-button class="add-btn" (click)="openAdduserDialogBox()">
+        <mat-icon>person_add</mat-icon>
+        Add New Contacts
+    </button>
+  
+  <mat-nav-list>
+    <mat-list-item (click)="applyFilter('All')">
+        <mat-icon>mail</mat-icon><span class="aligned-with-icon">All</span>
+    </mat-list-item>
+    <mat-list-item (click)="applyFilter('Starred')">
+        <mat-icon>star</mat-icon><span class="aligned-with-icon">Starred</span>
+    </mat-list-item>
+   </mat-nav-list>
+
+  <mat-divider></mat-divider>
+   <h3 class="catagory">Categories</h3>
+        <mat-nav-list>
+            <mat-list-item (click)="applyFilter('Engineering')">
+                <mat-icon>folder</mat-icon>
+                <span class="aligned-with-icon">Engineering</span>
+            </mat-list-item>
+            <mat-list-item (click)="applyFilter('Support')">
+                <mat-icon>support_agent</mat-icon>
+                <span class="aligned-with-icon">Support</span>
+            </mat-list-item>
+            <mat-list-item (click)="applyFilter('Sales')">
+                <mat-icon>bar_chart</mat-icon>
+                <span class="aligned-with-icon">Sales</span>
+            </mat-list-item>
+        </mat-nav-list>
+    
+</div>
+

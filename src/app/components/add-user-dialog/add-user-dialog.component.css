@@ -1,0 +1,71 @@
+ .form-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.avatar-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: 10px;
+    border: 2px solid #cccccce8;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-row mat-form-field {
+    width: 48%;
+}
+.form-row.full-width mat-form-field {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.mat-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.cancel-button {
+    background-color: gray;
+    color: white;
+}
+
+.add-button {
+    background-color: #007bff;
+    color: white;
+}
+
+
+
+
+
+

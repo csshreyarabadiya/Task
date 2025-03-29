@@ -1,0 +1,32 @@
+.mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .icon-container{
+    margin-top: 15px !important;
+    display: flex;
+    align-items: center;
+    gap: 12px !important;
+  }
+  
+  mat-icon:hover {
+    color: black; 
+  }
+
+  mat-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+
+  .star-icon {
+    cursor: pointer;
+    text-shadow: 0px 0px 2px black;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    max-width: 300px; 
+    margin-top: 15px ;
+    margin-left: 30px;
+  }
