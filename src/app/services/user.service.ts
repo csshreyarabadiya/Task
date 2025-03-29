@@ -11,13 +11,17 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 //#region pass data across components
-  private selectedUser = new BehaviorSubject<any>(userData);
+  private selectedUser = new BehaviorSubject<userData | null>(null);
   selectedUser$ = this.selectedUser.asObservable();
   filteredUser = new Subject<string>();
   addUser = new Subject<userData>();
 
-  setUser(user: any) {
-    this.selectedUser.next(user);
+  setUser(user: userData |null) {
+     this.selectedUser.next(user);
+  }
+
+  getSelectedUser() {
+    return this.selectedUser.value;
   }
 
   //#endregion

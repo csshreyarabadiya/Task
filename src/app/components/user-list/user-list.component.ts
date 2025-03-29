@@ -76,11 +76,20 @@ export class UserListComponent {
     user.isFavorite = !user.isFavorite;
   }
 
-  deleteUser(userInfo:userData){
-   this.userList = this.userList?.filter(user => user !== userInfo);
+  deleteUser(userInfo: userData,event:Event) {
+    event.stopPropagation();
+    this.filteredList = this.filteredList?.filter(user => user !== userInfo);
+    const selectedUser = this.userService.getSelectedUser();
+     if (selectedUser && selectedUser.id === userInfo.id) {
+      if (this.filteredList.length > 0) {
+        this.userService.setUser(this.filteredList[0]);
+      } else {
+        this.userService.setUser(null); 
+      }
+    }
   }
 
-  clickOnUser(user?: userData) {
+  clickOnUser(user: userData) {
     this.userService.setUser(user);
   }
 

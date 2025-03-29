@@ -13,7 +13,7 @@
      <div matListItemLine>{{user.department}}</div>
       <div matListItemMeta class="icon-container">
         <mat-icon class="star-icon" (click)="toggleFavorite(user)" [ngStyle]="{'color': user.isFavorite ? 'gold' : 'white'}" >star</mat-icon>
-        <mat-icon (click)="deleteUser(user)">delete</mat-icon>
+        <mat-icon (click)="deleteUser(user,$event)">delete</mat-icon>
       </div>
      </mat-list-item>
   }

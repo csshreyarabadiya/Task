@@ -14,13 +14,15 @@ import { Subscription } from 'rxjs';
   styleUrl: './user-detail.component.css'
 })
 export class UserDetailComponent {
-  selectedUser?:userData ;
+  selectedUser?:userData;
+  userList:userData[] = [];
   private userDataSubscription?:Subscription; 
 
   constructor(private userService: UserService) {
    }
 
  ngOnInit(){
+  this.loadDefaultUser();
   this.displaySelectedUserInfo();
  }
 
@@ -30,18 +32,21 @@ export class UserDetailComponent {
 
  displaySelectedUserInfo(){
   this.userDataSubscription = this.userService.selectedUser$.subscribe(userInfo => {
-    if(userInfo){
-      this.selectedUser = userInfo; 
-    }else{
-      this.loadDefaultUser();
+    if (userInfo) {
+      this.selectedUser = userInfo;
+    } else if (this.userList.length > 0) {
+      this.selectedUser = this.userList[0]; 
+      this.userService.setUser(this.selectedUser);
+    } else {
+      this.selectedUser = undefined;
     }
    });
  }
 
  loadDefaultUser() {
   this.userService.getUserDetails().pipe().subscribe({
-    next: (data) => {
-      
+    next: (data :userData[]) => {
+    this.userList = data;
      },
     error: (err) => {
     }
