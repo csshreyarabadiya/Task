@@ -1,58 +1,120 @@
+
 @if(selectedUser){
   <div class="contact-details-container">
     <h1>Contact Detail</h1>
      <div class="icon-container">
       <mat-icon class="star-icon"  [ngStyle]="{'color': selectedUser.isFavorite ? 'gold' : 'white'}" >star</mat-icon>
-      <mat-icon >delete</mat-icon>
+      <mat-icon  class="delete-icon" (click)="deleteCurrentUser()">delete</mat-icon>
+      <mat-icon (click)="toggleEditMode()" >edit</mat-icon>
      </div>
-  
-    
-  </div>
+   </div>
   <mat-divider></mat-divider>
-<div class="user-info">
-  <div class="avatar-container">
-    <img [src]="selectedUser.photo" alt="User Avatar" class="avatar">
-  </div>
-  <div class="user-details">
-    <span class="user-name">{{ selectedUser.firstName }} {{ selectedUser.lastName }}</span>
-    <span class="user-role">{{ selectedUser.department }}</span>
-  </div>
-</div>
+  @if(!isEditMode){
+    <div class="user-info">
+      <div class="avatar-container">
+        <img [src]="selectedUser.photo" alt="User Avatar" class="avatar">
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ selectedUser.firstName }} {{ selectedUser.lastName }}</span>
+        <span class="user-role">{{ selectedUser.department }}</span>
+      </div>
+    </div>
+    
+    <div class="contact-details">
+      <div class="info-item">
+        <span class="info-label">Phone Number</span>
+        <span class="info-value">{{ selectedUser.phone }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Email address</span>
+        <span class="info-value">{{ selectedUser.email }}</span>
+      </div>
+      <div class="info-item full-width">
+        <span class="info-label">Address</span>
+        <span class="info-value">{{ selectedUser.address }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">DepartMent</span>
+        <span class="info-value">{{ selectedUser.department }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Company</span>
+        <span class="info-value">{{ selectedUser.company }}</span>
+      </div>
+      <div class="info-item full-width">
+        <span class="info-label">Notes</span>
+        <span class="info-value">{{ selectedUser.notes }}</span>
+      </div>
+    </div>
+    
+    <mat-divider></mat-divider>
+    <div class="button-container">
+      <button mat-button class="edit-btn btn" (click)="toggleEditMode()">Edit</button>
+      <button mat-button class="delete-btn btn" (click)="deleteCurrentUser()">Delete</button>
+    </div>
+  }
+  @if (isEditMode) {
+    <form [formGroup]="userForm" class="edit-form">
+    <div class="form-group">
+       <label for="firstName">First Name</label>
+        <mat-form-field class="input-field" appearance="outline">
+          <input matInput id="firstName" formControlName="firstName">
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <mat-form-field class="input-field" appearance="outline">
+          <input matInput id="lastName" formControlName="lastName">
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <mat-form-field class="input-field" appearance="outline">
+          <input matInput id="email" formControlName="email">
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <mat-form-field class="input-field" appearance="outline">
+          <input matInput id="phone" formControlName="phone">
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <label for="address">Address</label>
+        <mat-form-field class="input-field" appearance="outline">
+          <input matInput id="address" formControlName="address">
+        </mat-form-field>
+      </div>
+  
+      <div class="form-group">
+        <label for="company">Company</label>
+        <mat-form-field class="input-field" appearance="outline">
+          <input matInput id="company" formControlName="company">
+        </mat-form-field>
+      </div>
 
-<div class="contact-details">
-  <div class="info-item">
-    <span class="info-label">Phone Number</span>
-    <span class="info-value">{{ selectedUser.phone }}</span>
-  </div>
-  <div class="info-item">
-    <span class="info-label">Email address</span>
-    <span class="info-value">{{ selectedUser.email }}</span>
-  </div>
-  <div class="info-item full-width">
-    <span class="info-label">Address</span>
-    <span class="info-value">{{ selectedUser.address }}</span>
-  </div>
-  <div class="info-item">
-    <span class="info-label">DepartMent</span>
-    <span class="info-value">{{ selectedUser.department }}</span>
-  </div>
-  <div class="info-item">
-    <span class="info-label">Company</span>
-    <span class="info-value">{{ selectedUser.company }}</span>
-  </div>
-  <div class="info-item full-width">
-    <span class="info-label">Notes</span>
-    <span class="info-value">{{ selectedUser.notes }}</span>
-  </div>
-</div>
-
-<mat-divider></mat-divider>
-<div class="button-container">
-  <button mat-button class="edit-btn btn">Edit</button>
-  <button mat-button class="delete-btn btn" (click)="deleteCurrentUser()">Delete</button>
-</div>
-
+      <div class="form-group">
+        <label for="company">Notes</label>
+        <mat-form-field appearance="outline">
+          <textarea matInput formControlName="notes"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="button-container">
+        <button mat-button class="edit-btn btn" (click)="saveUserContact()">Save Contact</button>
+        <button mat-button class="delete-btn btn" (click)="onCancel()">Cancel</button>
+      </div>
+     
+  
+    </form>
+  }
 }
+
+
+
 
 
 

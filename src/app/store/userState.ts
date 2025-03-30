@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { userData } from "../models/userData";
 import { UserService } from "../services/user.service";
 import { State, Action, StateContext, Selector, Store } from '@ngxs/store';
-import { AddUserAction, AddUserActionSuccess, DeleteUserAction, DeleteUserActionSuccess, FetchUserAction, FetchUserActionFailure, FetchUserActionSuccess } from "./userAction";
+import { AddUserAction, AddUserActionSuccess, DeleteUserAction, DeleteUserActionSuccess, FetchUserAction, FetchUserActionFailure, FetchUserActionSuccess, SetSelectedUserAction, UpdateUserAction } from "./userAction";
 import { plainToInstance } from 'class-transformer'
 
 
@@ -82,6 +82,30 @@ export class UserState {
     });
     dispatch(new DeleteUserActionSuccess(id));
   }
+
+@Action(SetSelectedUserAction)
+setSelectedUser({ patchState }: StateContext<UserStateModel>, { user }: SetSelectedUserAction) {
+  patchState({ selectedUser: user ?? undefined });
+}
+
+@Action(UpdateUserAction)
+editUser({ getState, setState, dispatch }: StateContext<UserStateModel>, { payload }: UpdateUserAction) {
+  const state = getState();
+  const updatedUsers = state.items.map(user => 
+      user.id === payload.id ? { ...user, ...payload.record } : user
+    );
+   const newSelectedUser = state.selectedUser?.id === payload.id
+      ? { ...state.selectedUser, ...payload.record }
+      : state.selectedUser;
+ 
+  setState({
+    items: updatedUsers,
+    selectedUser: newSelectedUser,
+  });
+   dispatch(new AddUserActionSuccess(payload.id));
+}
+
+
 
 
 

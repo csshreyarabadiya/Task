@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { map, Observable, Subscription, takeUntil } from 'rxjs';
-import { DeleteUserAction, FetchUserAction } from '../../store/userAction';
+import { DeleteUserAction, FetchUserAction, SetSelectedUserAction } from '../../store/userAction';
 import { plainToInstance } from 'class-transformer';
 import { UserState, UserStateModel } from '../../store/userState';
 import { Select, Store } from '@ngxs/store';
@@ -76,7 +76,7 @@ export class UserListComponent {
   }
 
   clickOnUser(user: userData) {
-    this.userService.setUser(user);
+    this._store.dispatch(new SetSelectedUserAction(user));
   }
 
   filterUsers() {

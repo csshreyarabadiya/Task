@@ -50,3 +50,8 @@ export class AddUserAction {
     static readonly type = '[User] Delete User Failure';
     constructor(public readonly error: any) { }
   }
+
+  export class SetSelectedUserAction {
+    static readonly type = '[User] Set Selected User';
+    constructor(public user: userData | null) {}
+  }
