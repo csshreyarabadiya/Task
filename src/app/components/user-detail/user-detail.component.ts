@@ -55,6 +55,10 @@ toggleEditMode() {
   }
 }
 
+toggleFavorite(user: userData) {
+  user.isFavorite = !user.isFavorite;
+}
+
   createForm(){
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],

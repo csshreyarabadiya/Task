@@ -3,7 +3,7 @@
   <div class="contact-details-container">
     <h1>Contact Detail</h1>
      <div class="icon-container">
-      <mat-icon class="star-icon"  [ngStyle]="{'color': selectedUser.isFavorite ? 'gold' : 'white'}" >star</mat-icon>
+      <mat-icon class="star-icon"  [ngStyle]="{'color': selectedUser.isFavorite ? 'gold' : 'white'}" (click)="toggleFavorite(selectedUser)" >star</mat-icon>
       <mat-icon  class="delete-icon" (click)="deleteCurrentUser()">delete</mat-icon>
       <mat-icon (click)="toggleEditMode()" >edit</mat-icon>
      </div>
