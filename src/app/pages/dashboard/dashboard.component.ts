@@ -3,6 +3,9 @@ import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { UserDetailComponent } from '../../components/user-detail/user-detail.component';
 import { UserListComponent } from '../../components/user-list/user-list.component';
+import { Store } from '@ngxs/store';
+import { FetchUserAction } from '../../store/userAction';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,5 +15,14 @@ import { UserListComponent } from '../../components/user-list/user-list.componen
   
 })
 export class DashboardComponent {
+  
+  constructor(private _store: Store) {  } 
+   ngOnInit(){
+    this.getUsers();
+   }
+
+  getUsers(){
+    this._store.dispatch(new FetchUserAction());
+   }
 
 }

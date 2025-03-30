@@ -8,10 +8,6 @@ export const routes: Routes = [
     { 
       path: '', 
       component: DashboardComponent,
-      children: [
-        { path: '', component: UserListComponent },
-        { path: 'user/:id', component: UserDetailComponent },
-      ]
     },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: '**', redirectTo: '' }

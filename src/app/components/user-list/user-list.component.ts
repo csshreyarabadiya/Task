@@ -8,7 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription, takeUntil } from 'rxjs';
+import { DeleteUserAction, FetchUserAction } from '../../store/userAction';
+import { plainToInstance } from 'class-transformer';
+import { UserState, UserStateModel } from '../../store/userState';
+import { Select, Store } from '@ngxs/store';
 
 
 @Component({
@@ -18,36 +22,33 @@ import { Subscription } from 'rxjs';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent {
+  constructor(private userService: UserService, private _store:Store) { }
   userList:userData[] = [];
   filteredList:userData[] = [];
   searchText: string = '';
   private filterSubscription?: Subscription;
-  private addUserSubscription?:Subscription;
-  constructor(private userService: UserService) { }
-
-  ngOnInit(){
-    this.getUserList();
+  userList$!: Observable<userData[]>;
+ 
+   ngOnInit(){
+    this.getUsersList();
     this.filteredUsersSubscription();
-    this.addNewUserSubscription();
-  }
+   }
 
   ngOnDestroy(){
     this.filterSubscription?.unsubscribe();
-    this.addUserSubscription?.unsubscribe();
-  }
-
-   getUserList(){
-     this.userService.getUserDetails().pipe().subscribe({
-      next: (data) => {
-         this.userList = data;
-         this.filteredList = data;
-       },
-      error: (err) => {
-      }
-     })
    }
 
-   filteredUsersSubscription(){
+  getUsersList() {
+    this.userList$ = this._store.select(UserState.getUsers); 
+    this.userList$.subscribe({
+      next: (users: userData[]) => {
+        this.filteredList = plainToInstance(userData, users);
+        this.userList = plainToInstance(userData,users)
+      },
+     });
+  }
+
+  filteredUsersSubscription(){
     this.filterSubscription = this.userService.filteredUser.subscribe(filter => {
       this.applyFilter(filter);
     });
@@ -55,21 +56,12 @@ export class UserListComponent {
 
    applyFilter(department: string) {
     if (department === 'All') {
-      this.filteredList = this.userList;
+      this.filteredList = [...this.userList];
     } else if(department=== 'Starred'){
-      this.filteredList = this.userList.filter(user => user.isFavorite == true);
+      this.filteredList = this.userList.filter(user => user.isFavorite);
     }else {
       this.filteredList = this.userList.filter(user => user.department === department);
     }
-  }
-
-
-  addNewUserSubscription(){
-    this.addUserSubscription = this.userService.addUser.subscribe(user =>{
-      if(user){
-        this.filteredList.unshift(user)
-      }
-   })
   }
 
   toggleFavorite(user: any) {
@@ -78,14 +70,8 @@ export class UserListComponent {
 
   deleteUser(userInfo: userData,event:Event) {
     event.stopPropagation();
-    this.filteredList = this.filteredList?.filter(user => user !== userInfo);
-    const selectedUser = this.userService.getSelectedUser();
-     if (selectedUser && selectedUser.id === userInfo.id) {
-      if (this.filteredList.length > 0) {
-        this.userService.setUser(this.filteredList[0]);
-      } else {
-        this.userService.setUser(null); 
-      }
+    if (userInfo?.id) {
+      this._store.dispatch(new DeleteUserAction(userInfo.id));
     }
   }
 
@@ -94,9 +80,10 @@ export class UserListComponent {
   }
 
   filterUsers() {
+    const search = this.searchText.toLowerCase();
     this.filteredList = this.userList.filter(user =>
-      user.firstName?.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      user.lastName?.toLowerCase().includes(this.searchText.toLowerCase())
+      user.firstName?.toLowerCase().includes(search) ||
+      user.lastName?.toLowerCase().includes(search)
     );
   }
 

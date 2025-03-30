@@ -6,6 +6,8 @@ import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
 import { userData } from '../../models/userData';
+import { AddUserAction } from '../../store/userAction';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +17,7 @@ import { userData } from '../../models/userData';
 })
 export class SidebarComponent {
 
-  constructor(private userService: UserService,private dialog: MatDialog) {}
+  constructor(private userService: UserService,private dialog: MatDialog,private _store : Store) {}
 
   applyFilter(department: string) {
     this.userService.filteredUser.next(department);
@@ -29,7 +31,7 @@ export class SidebarComponent {
 
     dialogRef.afterClosed().subscribe((result: userData) => {
       if (result) {
-        this.userService.addUser.next(result);
+       this._store.dispatch(new AddUserAction(result));
       }
     });
   }
