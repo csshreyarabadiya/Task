@@ -1,4 +1,4 @@
-export class userData{
+export class UserData{
     id?: string;
     firstName?: string;
     lastName?: string;
@@ -10,4 +10,5 @@ export class userData{
     notes?: string;
     photo?: string;
     isFavorite?:boolean;
+    $isSelected?:boolean;
 }

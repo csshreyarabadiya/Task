@@ -1,5 +1,8 @@
-<div class="form-container">
-    <h2>Add New Contact</h2>
+<div class="add-user-container">
+    <div class="header">
+        <h2>Add New Contact</h2>
+          <mat-icon (click)="onCancel()">close</mat-icon>
+   </div>
      <div class="avatar-container" (click)="triggerFileInput()">
         <img [src]="selectedImage || 'assets/images/user1.jpg'" alt="User Avatar" class="avatar">
     </div>
@@ -10,7 +13,6 @@
             <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
                 <input matInput formControlName="firstName">
-              
             </mat-form-field>
  
             <mat-form-field appearance="outline">

@@ -5,7 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
-import { userData } from '../../models/userData';
+import { UserData } from '../../models/userData';
 import { AddUserAction } from '../../store/userAction';
 import { Store } from '@ngxs/store';
 
@@ -27,9 +27,10 @@ export class SidebarComponent {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
       height: '500px',
       width: '400px',
+      autoFocus: false 
     });
 
-    dialogRef.afterClosed().subscribe((result: userData) => {
+    dialogRef.afterClosed().subscribe((result: UserData) => {
       if (result) {
        this._store.dispatch(new AddUserAction(result));
       }

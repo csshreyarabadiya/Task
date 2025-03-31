@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { userData } from '../../models/userData';
+import { UserData } from '../../models/userData';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,8 +20,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './user-detail.component.css'
 })
 export class UserDetailComponent {
-  selectedUser?:userData;
-  private subscription?: Subscription;
+  selectedUser?:UserData;
+  selectUsersubscription?: Subscription;
   isEditMode = false;
   userForm!: FormGroup;
   
@@ -32,11 +32,11 @@ export class UserDetailComponent {
      this.createForm();
   }
   ngOnDestroy(){
-    this.subscription?.unsubscribe();
+    this.selectUsersubscription?.unsubscribe();
   }
   getSelctedUser() {
-  this.subscription = this._store.select(UserState.getSelectedUser).subscribe({
-    next: (user: userData | undefined) => {
+  this.selectUsersubscription = this._store.select(UserState.getSelectedUser).subscribe({
+    next: (user: UserData | undefined) => {
       this.selectedUser = user ; 
     }
    });
@@ -55,8 +55,10 @@ toggleEditMode() {
   }
 }
 
-toggleFavorite(user: userData) {
-  user.isFavorite = !user.isFavorite;
+toggleFavorite(user: UserData) {
+  if (!user.id) return;
+  const payload = { id: user.id, record: { isFavorite: !user.isFavorite } };
+  this._store.dispatch(new UpdateUserAction(payload));
 }
 
   createForm(){
@@ -100,7 +102,7 @@ toggleFavorite(user: userData) {
 
    transferFormValuesToModel() {
     if (!this.selectedUser) {
-      this.selectedUser = new userData(); 
+      this.selectedUser = new UserData(); 
     }
 
     this.selectedUser.firstName = this.userForm.value.firstName;

@@ -1,17 +1,17 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { userData } from '../../models/userData';
+import { UserData } from '../../models/userData';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-add-user-dialog',
-  imports: [FormsModule,MatButtonModule,MatInputModule,MatFormFieldModule,MatOptionModule,MatSelectModule,ReactiveFormsModule],
+  imports: [FormsModule,MatButtonModule,MatInputModule,MatIcon,MatFormFieldModule,MatOptionModule,MatSelectModule,ReactiveFormsModule],
   templateUrl: './add-user-dialog.component.html',
   styleUrl: './add-user-dialog.component.css'
 })
@@ -19,7 +19,7 @@ export class AddUserDialogComponent{
   @ViewChild('fileInput') fileInput!: ElementRef;
   selectedImage?: string;
   userDetailForm!: FormGroup;
-  userInfo?:userData;
+  userInfo?:UserData;
   constructor(private dialogRef: MatDialogRef<AddUserDialogComponent>) {}
 
   ngOnInit(){
@@ -61,7 +61,7 @@ export class AddUserDialogComponent{
   }
 
   transferFormValueToModel(){
-    this.userInfo = new userData();
+    this.userInfo = new UserData();
    this.userInfo.firstName = this.userDetailForm.value.firstName;
    this.userInfo.lastName = this.userDetailForm.value.lastName;
    this.userInfo.address = this.userDetailForm.value.address;
@@ -76,6 +76,6 @@ export class AddUserDialogComponent{
    }
 
   onCancel(){
-     this.dialogRef.close();
+    this.dialogRef.close();
   }
 }

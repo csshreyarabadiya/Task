@@ -1,4 +1,4 @@
-import { userData } from "../models/userData";
+import { UserData } from "../models/userData";
 
 
 export class FetchUserAction {
@@ -15,7 +15,7 @@ export class FetchUserAction {
 
 export class AddUserAction {
     static readonly type = '[User] Add item';
-    constructor(public payload: userData) { }
+    constructor(public payload: UserData) { }
   }
   export class AddUserActionSuccess {
     static readonly type = '[User] Add User Success';
@@ -27,11 +27,11 @@ export class AddUserAction {
   }
   export class UpdateUserAction {
     static readonly type = '[User] Update item';
-    constructor(public payload: { id: string, record: userData }) { }
+    constructor(public payload: { id: string, record: UserData }) { }
   }
   export class UpdateUserActionSuccess {
     static readonly type = '[User] Update User Success';
-    constructor(public payload: string, public oldRecord :userData, public newRecord :userData) { }
+    constructor(public payload: string, public oldRecord :UserData, public newRecord :UserData) { }
   }
   export class UpdateUserActionFailure {
     static readonly type = '[User] Update User Failure';
@@ -53,5 +53,5 @@ export class AddUserAction {
 
   export class SetSelectedUserAction {
     static readonly type = '[User] Set Selected User';
-    constructor(public user: userData | null) {}
+    constructor(public user: UserData | null) {}
   }

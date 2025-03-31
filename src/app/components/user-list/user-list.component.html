@@ -7,12 +7,12 @@
 
 <mat-list>
  @for (user of filteredList; track user) {
-    <mat-list-item (click)="clickOnUser(user)">
+    <mat-list-item (click)="clickOnUser(user)"  [ngClass]="{'selected-user': user.$isSelected}">
      <img  matListItemAvatar [src]="user.photo">
      <div matListItemTitle>{{user.firstName}} {{user.lastName}}</div>
      <div matListItemLine>{{user.department}}</div>
       <div matListItemMeta class="icon-container">
-        <mat-icon class="star-icon" (click)="toggleFavorite(user)" [ngStyle]="{'color': user.isFavorite ? 'gold' : 'white'}" >star</mat-icon>
+        <mat-icon class="star-icon" (click)="toggleFavorite(user,$event)" [ngStyle]="{'color': user.isFavorite ? 'gold' : 'white'}" >star</mat-icon>
         <mat-icon (click)="deleteUser(user,$event)">delete</mat-icon>
       </div>
      </mat-list-item>

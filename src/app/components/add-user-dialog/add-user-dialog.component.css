@@ -1,8 +1,13 @@
- .form-container {
+ .add-user-container {
     width: 100%;
     max-width: 500px;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .avatar-container {
     width: 80px;
     height: 80px;
