@@ -18,7 +18,9 @@ import { MatIcon } from '@angular/material/icon';
 export class DashboardComponent {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   isMobile = false;
+
   constructor(private _store: Store,private breakpointObserver: BreakpointObserver) {  } 
+  
    ngOnInit(){
     this.getUsers();
    }

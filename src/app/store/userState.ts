@@ -4,8 +4,6 @@ import { UserService } from "../services/user.service";
 import { State, Action, StateContext, Selector, Store } from '@ngxs/store';
 import { AddUserAction, AddUserActionSuccess, DeleteUserAction, DeleteUserActionSuccess, FetchUserAction, FetchUserActionFailure, FetchUserActionSuccess, SetSelectedUserAction, UpdateUserAction, UpdateUserActionSuccess } from "./userAction";
 import { plainToInstance } from 'class-transformer'
-
-
 export class UserStateModel {
   items: UserData[] = [];
   selectedUser?: UserData;
@@ -102,11 +100,6 @@ editUser({ getState, setState, dispatch }: StateContext<UserStateModel>, { paylo
    setState({ items: updatedUsers, selectedUser: newSelectedUser});
    dispatch(new UpdateUserActionSuccess(payload.id, updatedUser, newUpdatedUser));
 }
-
-
-
-
-
 
 }
 

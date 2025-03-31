@@ -7,16 +7,14 @@ import { UserData } from '../models/userData';
   providedIn: 'root'
 })
 export class UserService {
-
   constructor(private http: HttpClient) { }
 
- filteredUser = new Subject<string>();
+   filteredUser = new Subject<string>();
  
-
- //#region  get user info
-  private jsonUrl = '/assets/userData.json';
+   //#region  get user info
+   private jsonUrl = '/assets/userData.json';
    getUserDetails() :Observable<UserData[]>{
-    return this.http.get<UserData[]>(this.jsonUrl);
-   }
-  //#endregion
+     return this.http.get<UserData[]>(this.jsonUrl);
+    }
+   //#endregion
 }

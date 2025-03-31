@@ -31,9 +31,11 @@ export class UserDetailComponent {
      this.getSelctedUser();
      this.createForm();
   }
+
   ngOnDestroy(){
     this.selectUsersubscription?.unsubscribe();
   }
+
   getSelctedUser() {
   this.selectUsersubscription = this._store.select(UserState.getSelectedUser).subscribe({
     next: (user: UserData | undefined) => {
@@ -46,20 +48,20 @@ export class UserDetailComponent {
   if(this.selectedUser?.id){
      this._store.dispatch(new DeleteUserAction(this.selectedUser.id));
   }
-}
+ }
 
 toggleEditMode() {
   this.isEditMode = !this.isEditMode;
   if(this.isEditMode){
     this.serFormValues();
   }
-}
+ }
 
-toggleFavorite(user: UserData) {
+ toggleFavorite(user: UserData) {
   if (!user.id) return;
   const payload = { id: user.id, record: { isFavorite: !user.isFavorite } };
   this._store.dispatch(new UpdateUserAction(payload));
-}
+ }
 
   createForm(){
     this.userForm = this.fb.group({
@@ -84,7 +86,6 @@ toggleFavorite(user: UserData) {
       company : this.selectedUser?.company,
       notes : this.selectedUser?.notes,
       department : this.selectedUser?.department
-
     })
   }
  

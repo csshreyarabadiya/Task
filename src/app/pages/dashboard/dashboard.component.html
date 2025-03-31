@@ -1,9 +1,7 @@
 <mat-sidenav-container class="dashboard-container">
-  
-    <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" class="sidebar">
+   <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" class="sidebar">
       <app-sidebar></app-sidebar>
     </mat-sidenav>
-  
     <mat-sidenav-content class="content">
       <div class="header">
         @if (isMobile) {
@@ -13,12 +11,10 @@
           }
         <h2>Dashboard</h2>
       </div>
-  
       <div class="main-container">
         <app-user-list class="user-list"></app-user-list>
         <app-user-detail class="user-detail"></app-user-detail>
       </div>
     </mat-sidenav-content>
-  
-  </mat-sidenav-container>
+</mat-sidenav-container>
   
