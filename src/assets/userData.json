@@ -1,6 +1,6 @@
 [
   {
-      "id": "1",
+      "id": 1,
       "firstName": "Georgeanna",
       "lastName": "Ramero",
       "company": "Muller Inc",
@@ -13,7 +13,7 @@
       "isFavorite": true
   },
   {
-      "id": "2",
+      "id": 2,
       "firstName": "Cami",
       "lastName": "Macha",
       "company": "Tech Corp",
@@ -26,7 +26,7 @@
       "isFavorite": false
   },
   {
-      "id": "3",
+      "id": 3,
       "firstName": "Alda",
       "lastName": "Ziemer",
       "company": "Innovate Ltd",
@@ -39,7 +39,7 @@
       "isFavorite": false
   },
   {
-      "id": "4",
+      "id": 4,
       "firstName": "Brian",
       "lastName": "Smith",
       "company": "Global Solutions",
@@ -52,7 +52,7 @@
       "isFavorite": false
   },
   {
-      "id": "5",
+      "id": 5,
       "firstName": "Emily",
       "lastName": "Davis",
       "company": "NextGen Tech",
@@ -65,7 +65,7 @@
       "isFavorite": true
   },
   {
-      "id": "6",
+      "id": 6,
       "firstName": "David",
       "lastName": "Clark",
       "company": "Innovate Ltd",
@@ -78,7 +78,7 @@
       "isFavorite": false
   },
   {
-      "id": "7",
+      "id": 7,
       "firstName": "Sophia",
       "lastName": "Martinez",
       "company": "Creative Minds",
@@ -91,7 +91,7 @@
       "isFavorite": true
   },
   {
-      "id": "8",
+      "id": 8,
       "firstName": "Ethan",
       "lastName": "Wright",
       "company": "Finance Experts",
@@ -104,7 +104,7 @@
       "isFavorite": false
   },
   {
-      "id": "9",
+      "id": 9,
       "firstName": "Olivia",
       "lastName": "Brown",
       "company": "Health First",
@@ -117,7 +117,7 @@
       "isFavorite": false
   },
   {
-      "id": "10",
+      "id": 10,
       "firstName": "Liam",
       "lastName": "Anderson",
       "company": "EduSmart",
@@ -130,7 +130,7 @@
       "isFavorite": true
   },
   {
-      "id": "11",
+      "id": 11,
       "firstName": "Mia",
       "lastName": "Johnson",
       "company": "Retail Pros",
@@ -143,7 +143,7 @@
       "isFavorite": false
   },
   {
-      "id": "12",
+      "id": 12,
       "firstName": "Noah",
       "lastName": "Hall",
       "company": "AutoTech",
@@ -156,7 +156,7 @@
       "isFavorite": true
   },
   {
-      "id": "13",
+      "id": 13,
       "firstName": "Emma",
       "lastName": "White",
       "company": "Law Experts",

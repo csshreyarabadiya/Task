@@ -58,7 +58,7 @@ export class UserState {
   @Action(AddUserAction)
   add({ getState, setState, dispatch }: StateContext<UserStateModel>, { payload }: AddUserAction) {
     const state = getState();
-    payload.id = Date.now().toString();
+    payload.id = Date.now();
     const updatedUsers = [payload, ...state.items];
     setState({
       items: updatedUsers,

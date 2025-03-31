@@ -19,7 +19,7 @@ export class AddUserAction {
   }
   export class AddUserActionSuccess {
     static readonly type = '[User] Add User Success';
-    constructor(public payload: string) { }
+    constructor(public payload: number) { }
   }
   export class AddUserActionFailure {
     static readonly type = '[User] Add User Failure';
@@ -27,11 +27,11 @@ export class AddUserAction {
   }
   export class UpdateUserAction {
     static readonly type = '[User] Update item';
-    constructor(public payload: { id: string, record: UserData }) { }
+    constructor(public payload: { id: number, record: UserData }) { }
   }
   export class UpdateUserActionSuccess {
     static readonly type = '[User] Update User Success';
-    constructor(public payload: string, public oldRecord :UserData, public newRecord :UserData) { }
+    constructor(public payload: number, public oldRecord :UserData, public newRecord :UserData) { }
   }
   export class UpdateUserActionFailure {
     static readonly type = '[User] Update User Failure';
@@ -40,11 +40,11 @@ export class AddUserAction {
 
   export class DeleteUserAction {
     static readonly type = '[User] Delete item';
-    constructor(public id: string) { }
+    constructor(public id: number) { }
   }
   export class DeleteUserActionSuccess {
     static readonly type = '[User] Delete User Success';
-    constructor(public payload: string) { }
+    constructor(public payload: number) { }
   }
   export class DeleteUserActionFailure {
     static readonly type = '[User] Delete User Failure';
