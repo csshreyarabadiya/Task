@@ -10,24 +10,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-//#region pass data across components
-  private selectedUser = new BehaviorSubject<UserData | null>(null);
-  selectedUser$ = this.selectedUser.asObservable();
-  filteredUser = new Subject<string>();
-  addUser = new Subject<UserData>();
+ filteredUser = new Subject<string>();
+ 
 
-  setUser(user: UserData |null) {
-     this.selectedUser.next(user);
-  }
-
-  getSelectedUser() {
-    return this.selectedUser.value;
-  }
-
-  //#endregion
-
-
-  //#region  get user info
+ //#region  get user info
   private jsonUrl = '/assets/userData.json';
    getUserDetails() :Observable<UserData[]>{
     return this.http.get<UserData[]>(this.jsonUrl);
